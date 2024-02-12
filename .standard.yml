@@ -1,0 +1,6 @@
+# ignore:
+#   - 'lib/tasks/auto_annotate_models.rake'
+#   - 'spec/rails_helper.rb'
+#   - 'a/whole/directory/**/*'
+plugins:
+  - standard-rails
