@@ -8,6 +8,11 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}',
     './app/components/**/*.{rb,erb,haml,html,slim}',
   ],
+  safelist: [
+    {
+      pattern: /(?:bg|text|ring)-(red|green|blue|yellow|white|black|gray|purple|rose|pink|fuchsia|violet|indigo|sky|cyan|teal|emerald|lime|amber|orange|stone|neutral|zinc|slate|transparent|inherit)/,
+    },
+  ],
   theme: {
     screens: {
       'sm': '640px',
