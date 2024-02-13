@@ -67,3 +67,4 @@ gem "cloudinary"
 gem "view_component"
 
 gem "tailwindcss-rails", "~> 2.3"
+gem "faker"
