@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "notes/edit", type: :view do
   let(:note) {
@@ -15,7 +15,6 @@ RSpec.describe "notes/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", note_path(note), "post" do
-
       assert_select "input[name=?]", "note[title]"
     end
   end

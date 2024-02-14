@@ -51,7 +51,7 @@ group :development do
   gem "listen"
   gem "actioncable"
   gem "lookbook", ">= 2.2.1"
-  gem 'meta_request', github: 'instrumentl/rails_panel', branch: 'chore/rails-7.1', glob: 'meta_request/meta_request.gemspec'
+  gem "meta_request", github: "instrumentl/rails_panel", branch: "chore/rails-7.1", glob: "meta_request/meta_request.gemspec"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -71,4 +71,4 @@ gem "cloudinary"
 gem "view_component"
 gem "tailwindcss-rails", "~> 2.3"
 gem "faker"
-gem 'rails_performance'
+gem "rails_performance"

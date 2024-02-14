@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   if Rails.env.development?
     mount Lookbook::Engine, at: "/lookbook"
-    mount RailsPerformance::Engine, at: 'rails/performance'
+    mount RailsPerformance::Engine, at: "rails/performance"
   end
   # Defines the root path route ("/")
   # root "posts#index"

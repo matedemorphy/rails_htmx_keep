@@ -16,7 +16,7 @@ module RailsHtmxKeep
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
     config.view_component.default_preview_layout = "component_preview"
-    config.view_component.preview_paths << "#{Rails.root}/app/components/previews"
+    config.view_component.preview_paths << Rails.root.join("app/components/previews").to_s
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
