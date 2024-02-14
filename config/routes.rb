@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: "users/sessions" }
   resources :notes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     mount RailsPerformance::Engine, at: "rails/performance"
   end
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "notes#index"
 end

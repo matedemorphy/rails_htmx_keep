@@ -1,0 +1,19 @@
+<section class="bg-white dark:bg-gray-900">
+  <div class="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
+		<dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-4 dark:text-white">
+			<div class="flex flex-col items-center justify-center">
+				<dt class="mb-2 text-mb md:text-lg font-bold"><%= link_to "Notes", notes_path %></dt>
+			</div>
+			<div class="flex flex-col items-center justify-center">
+				<dt class="mb-2 text-mb md:text-lg font-bold"><%= link_to "Reminders", "#" %></dt>
+			</div>
+			<div class="flex flex-col items-center justify-center">
+				<dt class="mb-2 text-mb md:text-lg font-bold"><%= link_to "Archive", "#" %></dt>
+			</div>
+			<div class="flex flex-col items-center justify-center">
+				<dt class="mb-2 text-mb md:text-lg font-bold"><%= current_user.email %></dt>
+				<dd class="font-light text-gray-500 dark:text-gray-400"><%= button_to "Log out", destroy_user_session_path, method: :delete, class: "text-blue-500 dark:text-blue-400" %></dd>
+			</div>
+		</dl>
+  </div>
+</section>
