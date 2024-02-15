@@ -2,9 +2,18 @@ require "open-uri"
 
 FactoryBot.define do
   factory :note do
-    title { Faker::Lorem.sentence(word_count: rand(1..7)) }
+    title { Faker::Lorem.sentence(word_count: rand(1..3)) }
+    user
 
     trait :with_image do
+      after :create do |note|
+        image_file = URI.parse(Faker::LoremFlickr.image(size: "800x800", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
+        note.image.attach(io: image_file, filename: "#{Faker::Commerce.promotion_code(digits: 5).downcase}.jpg")
+      end
+    end
+
+    trait :with_all_attributes do
+      content { rand(1..3).times { Faker::Lorem.paragraph(sentence_count: rand(1..3)) } }
       after :create do |note|
         image_file = URI.parse(Faker::LoremFlickr.image(size: "800x800", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
         note.image.attach(io: image_file, filename: "#{Faker::Commerce.promotion_code(digits: 5).downcase}.jpg")
@@ -35,4 +44,13 @@ end
 #  title      :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint           not null
+#
+# Indexes
+#
+#  index_notes_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #

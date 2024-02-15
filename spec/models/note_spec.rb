@@ -4,6 +4,7 @@ RSpec.describe Note, type: :model do
   describe "validations" do
     it { should have_rich_text(:content) }
     it { should have_one_attached(:image) }
+    it { should belong_to(:user) }
   end
 
   describe "active storage validations" do
@@ -34,4 +35,13 @@ end
 #  title      :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint           not null
+#
+# Indexes
+#
+#  index_notes_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #

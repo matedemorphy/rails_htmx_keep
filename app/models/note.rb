@@ -1,8 +1,13 @@
 class Note < ApplicationRecord
+  belongs_to :user
   has_rich_text :content
-  has_one_attached :image
+  has_one_attached :image do |attachable|
+    attachable.variant :card, resize_to_limit: [200, 200]
+  end
 
   validate :valid_image, if: -> { image.present? }
+
+  scope :current_user, ->(user_id) { where(user_id: user_id).order(created_at: :desc) }
 
   private
 
@@ -27,4 +32,13 @@ end
 #  title      :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint           not null
+#
+# Indexes
+#
+#  index_notes_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
