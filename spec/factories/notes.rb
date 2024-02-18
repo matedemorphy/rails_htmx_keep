@@ -6,18 +6,19 @@ FactoryBot.define do
     user
 
     trait :with_image do
-      after :create do |note|
-        image_file = URI.parse(Faker::LoremFlickr.image(size: "800x800", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
-        note.image.attach(io: image_file, filename: "#{Faker::Commerce.promotion_code(digits: 5).downcase}.jpg")
-      end
+      image { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'files', 'note.jpg'), 'image/jpeg') }
     end
 
     trait :with_all_attributes do
       content { rand(1..3).times { Faker::Lorem.paragraph(sentence_count: rand(1..3)) } }
       after :create do |note|
-        image_file = URI.parse(Faker::LoremFlickr.image(size: "800x800", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
+        image_file = URI.parse(Faker::LoremFlickr.image(size: "400x400", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
         note.image.attach(io: image_file, filename: "#{Faker::Commerce.promotion_code(digits: 5).downcase}.jpg")
       end
+    end
+
+    trait :invalid do
+      user_id { nil }
     end
 
     trait :with_oversize_image do

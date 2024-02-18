@@ -18,6 +18,7 @@ RSpec.describe "/notes", type: :request do
   another_notes_count = rand(1..3)
 
   let!(:user) { create(:user) }
+  let(:note_with_valid_attributes) { attributes_for(:note, :with_image) }
   let!(:notes) { create_list(:note, notes_count, :with_all_attributes, user: user) }
   let!(:notes_other_user) { create_list(:note, other_notes_count, :with_all_attributes) }
   let!(:notes_another_user) { create_list(:note, another_notes_count, :with_all_attributes) }
@@ -27,19 +28,22 @@ RSpec.describe "/notes", type: :request do
     sign_in user
   end
 
-  context "GET /index" do
-    before { get notes_url }
+  describe "GET /index" do
+    subject(:get_index) { get notes_url }
+    context "when successful" do
+      before { get notes_url }
 
-    it "returns a successful response" do
-      expect(response).to have_http_status(:ok)
-    end
+      it "returns a successful response" do
+        expect(response).to have_http_status(:ok)
+      end
 
-    it "renders a successful response" do
-      expect(notes.count).to eq(controller.instance_variable_get(:@notes).count)
-      notes.each do |note|
-        expect(response.body).to include(note.title)
-        expect(response.body).to include(note.image.filename.to_s)
-        expect(response.body).to include(note.content.body.to_plain_text)
+      it "renders a successful response with correct notes" do
+        expect(notes.count).to eq(controller.instance_variable_get(:@notes).count)
+        notes.each do |note|
+          expect(response.body).to include(note.title)
+          expect(response.body).to include(note.image.filename.to_s)
+          expect(response.body).to include(note.content.body.to_plain_text)
+        end
       end
     end
   end
@@ -52,13 +56,6 @@ RSpec.describe "/notes", type: :request do
   #   end
   # end
 
-  # describe "GET /new" do
-  #   it "renders a successful response" do
-  #     get new_note_url
-  #     expect(response).to be_successful
-  #   end
-  # end
-
   # describe "GET /edit" do
   #   it "renders a successful response" do
   #     note = Note.create! valid_attributes
@@ -67,33 +64,21 @@ RSpec.describe "/notes", type: :request do
   #   end
   # end
 
-  # describe "POST /create" do
-  #   context "with valid parameters" do
-  #     it "creates a new Note" do
-  #       expect {
-  #         post notes_url, params: {note: valid_attributes}
-  #       }.to change(Note, :count).by(1)
-  #     end
+  describe "POST /create" do
+    subject(:create_note) { post notes_url, params: {note: note_with_valid_attributes} }
 
-  #     it "redirects to the created note" do
-  #       post notes_url, params: {note: valid_attributes}
-  #       expect(response).to redirect_to(note_url(Note.last))
-  #     end
-  #   end
+    context "with valid parameters" do
+      it "creates a new Note" do
+        expect { create_note }.to change(Note, :count).by(1)
+      end
 
-  #   context "with invalid parameters" do
-  #     it "does not create a new Note" do
-  #       expect {
-  #         post notes_url, params: {note: invalid_attributes}
-  #       }.to change(Note, :count).by(0)
-  #     end
-
-  #     it "renders a response with 422 status (i.e. to display the 'new' template)" do
-  #       post notes_url, params: {note: invalid_attributes}
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
-  #   end
-  # end
+      it "should have image attached" do
+        create_note
+        expect(controller.instance_variable_get(:@note).image.attached?).to be true
+        ## test card added
+      end
+    end
+  end
 
   # describe "PATCH /update" do
   #   context "with valid parameters" do

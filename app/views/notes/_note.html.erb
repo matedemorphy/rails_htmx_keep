@@ -5,7 +5,9 @@
   </p>
   <br>
   <strong class="block font-medium mb-1">Image:</strong>
-  <%= image_tag note.image.variant(:card) %>
+  <% if note.image.present? %>
+    <%= image_tag note.image.variant(:card) %>
+  <% end %>
   <br>
   <div>
     <strong class="block font-medium mb-1">Content:</strong>
