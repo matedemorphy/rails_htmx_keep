@@ -11,7 +11,7 @@
 				<dt class="mb-2 text-mb md:text-lg font-bold"><%= link_to "Archive", "#" %></dt>
 			</div>
 			<div class="flex flex-col items-center justify-center">
-				<dt class="mb-2 text-mb md:text-lg font-bold"><%= current_user.email %></dt>
+				<dt class="text-mb md:text-sm font-bold text-yellow-500"><%= current_user.email %></dt>
 				<dd class="font-light text-gray-500 dark:text-gray-400"><%= button_to "Log out", destroy_user_session_path, method: :delete, class: "text-blue-500 dark:text-blue-400" %></dd>
 			</div>
 		</dl>

@@ -24,9 +24,9 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
 
     if @note.save
-      redirect_to @note, notice: "Note was successfully created."
+      render partial: 'notes/note', locals: { note: @note }, layout: false, status: :created
     else
-      render :new, status: :unprocessable_entity
+      render status: :unprocessable_entity
     end
   end
 
@@ -54,6 +54,6 @@ class NotesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def note_params
-    params.require(:note).permit(:title)
+    params.require(:note).permit(:title, :image, :content).merge(user_id: current_user.id)
   end
 end
