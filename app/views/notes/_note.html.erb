@@ -1,16 +1,16 @@
 <div id="<%= dom_id note %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
+    <strong class="block font-bold mb-1">Title:</strong>
     <%= note.title %>
   </p>
   <br>
-  <strong class="block font-medium mb-1">Image:</strong>
+  <strong class="block font-bold mb-1">Image:</strong>
   <% if note.image.present? %>
     <%= image_tag note.image.variant(:card) %>
   <% end %>
   <br>
   <div>
-    <strong class="block font-medium mb-1">Content:</strong>
+    <strong class="block font-bold mb-1">Content:</strong>
     <%= note.content %>
   </div>
   <% if action_name != "show" %>
@@ -19,6 +19,4 @@
     <hr class="mt-6">
   <% end %>
 </div>
-<br>
-<hr>
 <br>

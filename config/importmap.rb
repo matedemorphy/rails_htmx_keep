@@ -1,5 +1,7 @@
 pin "@fortawesome/fontawesome-free", to: "https://ga.jspm.io/npm:@fortawesome/fontawesome-free@6.1.1/js/all.js"
-pin "flowbite", to: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.turbo.min.js" # Pin npm packages by running ./bin/importmap
+pin "flowbite", to: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
 pin "application"
+pin "htmx.org"
+#pin "htmx.org/dist/ext/", to: "https://unpkg.com/htmx.org@1.9.10/dist/ext/response-targets.js"

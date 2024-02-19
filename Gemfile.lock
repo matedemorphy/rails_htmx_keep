@@ -291,6 +291,8 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-htmx (0.1.3)
+      railties (>= 5.2)
     rails_performance (1.2.1)
       browser
       railties
@@ -462,6 +464,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)
+  rails-htmx (~> 0.1.3)
   rails_performance
   rspec-rails (~> 6.1.0)
   selenium-webdriver

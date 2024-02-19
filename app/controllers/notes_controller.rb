@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  respond_to :html
   before_action :set_note, only: %i[show edit update destroy]
 
   # GET /notes
@@ -13,6 +14,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    render partial: 'notes/form', locals: { note: @note }
   end
 
   # GET /notes/1/edit
@@ -24,7 +26,7 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
 
     if @note.save
-      render partial: 'notes/note', locals: { note: @note }, layout: false, status: :created
+      render partial: 'notes/note', locals: { note: @note }, status: :ok
     else
       render status: :unprocessable_entity
     end

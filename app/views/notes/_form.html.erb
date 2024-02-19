@@ -1,22 +1,9 @@
-<%= form_with(model: note, class: "contents") do |form| %>
-  <% if note.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
-
-      <ul>
-        <% note.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="p-4 md:p-5">
+  <%= form_with model: note, url: false, class: "space-y-4", data: hx("on::after-request": "console.log('dfsgdsgfdg');", post: url_for(note), target: "#notes", swap: "afterend")  do |form| %>
+    <div>
+      <%= form.label :title, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= form.text_field :title, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" %>
     </div>
+    <%= form.submit class: "text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>
