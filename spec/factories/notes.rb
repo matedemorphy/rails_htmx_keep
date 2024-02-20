@@ -3,6 +3,7 @@ require "open-uri"
 FactoryBot.define do
   factory :note do
     title { Faker::Lorem.sentence(word_count: rand(1..3)) }
+    content { rand(1..3).times { Faker::Lorem.paragraph(sentence_count: rand(1..3)) } }
     user
 
     trait :with_image do
@@ -10,7 +11,6 @@ FactoryBot.define do
     end
 
     trait :with_all_attributes do
-      content { rand(1..3).times { Faker::Lorem.paragraph(sentence_count: rand(1..3)) } }
       after :create do |note|
         image_file = URI.parse(Faker::LoremFlickr.image(size: "400x400", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
         note.image.attach(io: image_file, filename: "#{Faker::Commerce.promotion_code(digits: 5).downcase}.jpg")
@@ -18,7 +18,7 @@ FactoryBot.define do
     end
 
     trait :invalid do
-      user_id { nil }
+      content { nil }
     end
 
     trait :with_oversize_image do

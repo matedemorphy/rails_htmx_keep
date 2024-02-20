@@ -4,7 +4,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.current_user(current_user.id)
+    @notes = Note.current_user(current_user.id).with_rich_text_content.with_attached_image
   end
 
   # GET /notes/1
@@ -26,9 +26,9 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
 
     if @note.save
-      render partial: 'notes/note', locals: { note: @note }, status: :ok
+      render partial: 'notes/note', locals: { note: @note }, status: :created
     else
-      render status: :unprocessable_entity
+      render partial: 'shared/form_errors', locals: { errors: @note.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

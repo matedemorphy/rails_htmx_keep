@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe Note, type: :model do
   describe "validations" do
     it { should have_rich_text(:content) }
+    it { should validate_presence_of(:content) }
     it { should have_one_attached(:image) }
     it { should belong_to(:user) }
   end

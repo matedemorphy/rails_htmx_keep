@@ -11,7 +11,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}'>
+  <body hx-headers='{"X-CSRF-Token": "<%= form_authenticity_token %>"}' hx-ext="response-targets">
       <% if current_user %>
         <%= render "shared/navbar" %>
       <% end %>

@@ -19,6 +19,7 @@ RSpec.describe "/notes", type: :request do
 
   let!(:user) { create(:user) }
   let(:note_with_valid_attributes) { attributes_for(:note, :with_image) }
+  let(:note_with_invalid_attributes) { attributes_for(:note, :invalid) }
   let!(:notes) { create_list(:note, notes_count, :with_all_attributes, user: user) }
   let!(:notes_other_user) { create_list(:note, other_notes_count, :with_all_attributes) }
   let!(:notes_another_user) { create_list(:note, another_notes_count, :with_all_attributes) }
@@ -66,8 +67,14 @@ RSpec.describe "/notes", type: :request do
 
   describe "POST /create" do
     subject(:create_note) { post notes_url, params: {note: note_with_valid_attributes} }
+    subject(:try_create_note) { post notes_url, params: {note: note_with_invalid_attributes} }
 
     context "with valid parameters" do
+      it "returns a successful response" do
+        create_note
+        expect(response).to have_http_status(:created)
+      end
+
       it "creates a new Note" do
         expect { create_note }.to change(Note, :count).by(1)
       end
@@ -76,6 +83,13 @@ RSpec.describe "/notes", type: :request do
         create_note
         expect(controller.instance_variable_get(:@note).image.attached?).to be true
         ## test card added
+      end
+    end
+
+    context "with invalid parameters" do
+      it "returns a unsuccessful response" do
+        try_create_note
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
