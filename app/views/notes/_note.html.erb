@@ -6,7 +6,7 @@
   <br>
   <strong class="block font-bold mb-1">Image:</strong>
   <% if note.image.present? %>
-    <%= image_tag note.image.variant(:card) %>
+    <%= cl_image_tag(note.image.key, :folder => "htmx_rails_keep", :width=>300, :height=>300) %>
   <% end %>
   <br>
   <div>
