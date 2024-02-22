@@ -13,7 +13,11 @@
 
   <body>
     <div class="max-w-7xl p-10 mx-auto">
-      <%= yield %>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid gap-4">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

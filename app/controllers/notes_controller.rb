@@ -44,7 +44,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy!
-    redirect_to notes_url, notice: "Note was successfully destroyed.", status: :see_other
+    head :ok
   end
 
   private

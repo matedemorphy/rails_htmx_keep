@@ -1,13 +1,3 @@
-GIT
-  remote: https://github.com/instrumentl/rails_panel.git
-  revision: 4c97bd7e8f1302d04fe568df56e9216d40a4f6d1
-  branch: chore/rails-7.1
-  glob: meta_request/meta_request.gemspec
-  specs:
-    meta_request (0.7.3)
-      rack-contrib (>= 1.1, < 3)
-      railties (>= 3.0.0, < 7.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -258,8 +248,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.9)
-    rack-contrib (2.4.0)
-      rack (< 4)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0, < 4)
@@ -457,7 +445,6 @@ DEPENDENCIES
   importmap-rails
   listen
   lookbook (>= 2.2.1)
-  meta_request!
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection

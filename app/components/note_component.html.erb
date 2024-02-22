@@ -1,0 +1,27 @@
+<div id="note_<%=@id%>" class="p-2">
+  <div class="max-w-sm w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto shadow-md border border-gray-200 bg-white rounded-lg overflow-hidden">
+    <div class="relative p-4">
+      <% if @image_key.present? %>
+        <%= cl_image_tag(@image_key, :folder => "htmx_rails_keep", :class => "w-full h-auto rounded-lg") %>
+      <% end %>
+    </div>
+    <div class="p-4">
+      <div class="text-xl font-bold mb-2 whitespace-normal break-words"><%= @title %></div>
+      <div class="text-base mb-4 whitespace-normal break-words"><%= @rich_content %></div>
+      <div class="flex space-x-10">
+        <%= button_tag(type: "button", data: {hx_target: "#modal-content", hx_get: edit_note_path(@id), hx_swap: "outerHTML", modal_target: "note-modal", modal_toggle: "note-modal"}) do %>
+          <%= content_tag(:i, "", class: "cursor-pointer text-green-500 text-2xl fa-solid fa-pen-to-square") %>
+        <% end %>
+        <div class="flex items-center">
+          <button type="button" hx-on:click="document.querySelector('#color-picker-<%=@id%>').click();" class="group relative w-10 h-10">
+            <i class="fa-solid fa-palette text-2xl text-yellow-500"></i>
+          </button>
+          <input hx-on:change="console.log('asdfdsfdsfadsf')" id="color-picker-<%=@id%>" type="color" style="opacity: 0; width: 0;height:0;position: absolute;">
+        </div>
+        <%= button_tag(type: "button", data: hx(confirm: "Are you sure you wish to delete this note?", delete: note_path(@id), swap: "delete", target: "#note_#{@id}")) do %>
+          <%= content_tag(:i, "", class: "cursor-pointer text-red-500 text-2xl fa-regular fa-trash-can") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

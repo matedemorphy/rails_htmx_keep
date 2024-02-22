@@ -1,22 +1,2 @@
-<div id="<%= dom_id note %>">
-  <p class="my-5">
-    <strong class="block font-bold mb-1">Title:</strong>
-    <%= note.title %>
-  </p>
-  <br>
-  <strong class="block font-bold mb-1">Image:</strong>
-  <% if note.image.present? %>
-    <%= cl_image_tag(note.image.key, :folder => "htmx_rails_keep", :width=>300, :height=>300) %>
-  <% end %>
-  <br>
-  <div>
-    <strong class="block font-bold mb-1">Content:</strong>
-    <%= note.content %>
-  </div>
-  <% if action_name != "show" %>
-    <%= link_to "Show this note", note, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this note", edit_note_path(note), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
-<br>
+<%= render(NoteComponent.new(id: note.id, rich_content: note.content, title: note.title, image_key: note.image&.key))%>
+

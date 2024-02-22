@@ -124,18 +124,17 @@ RSpec.describe "/notes", type: :request do
   #   end
   # end
 
-  # describe "DELETE /destroy" do
-  #   it "destroys the requested note" do
-  #     note = Note.create! valid_attributes
-  #     expect {
-  #       delete note_url(note)
-  #     }.to change(Note, :count).by(-1)
-  #   end
+  describe "DELETE /destroy" do
+    subject(:delete_note) { delete note_url(Note.order("RANDOM()").take) }
 
-  #   it "redirects to the notes list" do
-  #     note = Note.create! valid_attributes
-  #     delete note_url(note)
-  #     expect(response).to redirect_to(notes_url)
-  #   end
-  # end
+    context "everything ok" do
+      it "returns a successful response" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "destroys the requested note" do
+        expect { delete_note }.to change(Note, :count).by(-1)
+      end
+    end
+  end
 end
