@@ -15,12 +15,12 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
-    render partial: 'notes/form', locals: { note: @note, target: @target }
+    render partial: "notes/form", locals: {note: @note, target: @target}
   end
 
   # GET /notes/1/edit
   def edit
-    render partial: 'notes/form', locals: { note: @note, target: @target }
+    render partial: "notes/form", locals: {note: @note, target: @target}
   end
 
   # POST /notes
@@ -28,24 +28,24 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
 
     if @note.save
-      render partial: 'notes/note', locals: { note: @note }, status: :created
+      render partial: "notes/note", locals: {note: @note}, status: :created
     else
-      render partial: 'shared/form_errors', locals: { errors: @note.errors.full_messages }, status: :unprocessable_entity
+      render partial: "shared/form_errors", locals: {errors: @note.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
-      render partial: 'notes/note', locals: { note: @note }, status: :ok
+      render partial: "notes/note", locals: {note: @note}, status: :ok
     else
-      render partial: 'shared/form_errors', locals: { errors: @note.errors.full_messages }, status: :unprocessable_entity
+      render partial: "shared/form_errors", locals: {errors: @note.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   def color
     if @note.update(color: params[:color])
-      render partial: 'notes/note', locals: { note: @note }, status: :ok
+      render partial: "notes/note", locals: {note: @note}, status: :ok
     end
   end
 

@@ -26,7 +26,6 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def login_as_guest
-    puts "*************************** guest ***********************"
     user = User.create!(email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 20))
     sign_in user
     redirect_to notes_url

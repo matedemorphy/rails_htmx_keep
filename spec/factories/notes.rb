@@ -7,7 +7,7 @@ FactoryBot.define do
     user
 
     trait :with_image do
-      image { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'files', 'note.jpg'), 'image/jpeg') }
+      image { Rack::Test::UploadedFile.new(Rails.root.join("spec/support/files/note.jpg"), "image/jpeg") }
     end
 
     trait :with_all_attributes do

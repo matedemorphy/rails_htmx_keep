@@ -42,7 +42,7 @@ RSpec.describe "/notes", type: :request do
         expect(notes.count).to eq(controller.instance_variable_get(:@notes).count)
         notes.each do |note|
           expect(response.body).to include(note.title)
-          #expect(response.body).to include(note.image.filename.to_s)
+          # expect(response.body).to include(note.image.filename.to_s)
           expect(response.body).to include(note.content.body.to_plain_text)
         end
       end
@@ -81,7 +81,7 @@ RSpec.describe "/notes", type: :request do
 
       it "should have image attached" do
         create_note
-        #expect(controller.instance_variable_get(:@note).image.attached?).to be true
+        # expect(controller.instance_variable_get(:@note).image.attached?).to be true
         ## test card added
       end
     end

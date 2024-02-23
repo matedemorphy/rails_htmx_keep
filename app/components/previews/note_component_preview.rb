@@ -3,7 +3,7 @@
 class NoteComponentPreview < ViewComponent::Preview
   # Card with all attributes
 
-  #-@param color select { choices: [#FFFFFF, #FFFF00, #0000FF, #FF0000, #097969, #A020F0] }
+  # -@param color select { choices: [#FFFFFF, #FFFF00, #0000FF, #FF0000, #097969, #A020F0] }
   def with_all_attributes
     image_keys = [
       "ccl8qwjs4hcsulkfzbxr",
