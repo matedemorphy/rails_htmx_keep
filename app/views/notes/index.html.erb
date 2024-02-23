@@ -1,10 +1,7 @@
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Notes</h1>
-    <button data-modal-target="note-modal" data-modal-toggle="note-modal" data-hx-get="/notes/new" data-hx-target="#modal-content" data-hx-swap="outerHTML" type="button" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    <button data-modal-target="note-modal" data-modal-toggle="note-modal" data-hx-get="/notes/new" data-hx-target="#modal-content" data-hx-swap="innerHTML" type="button" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
       New Note
     </button>
   </div>

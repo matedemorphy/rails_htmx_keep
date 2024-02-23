@@ -14,3 +14,13 @@ document.body.addEventListener('htmx:beforeSwap', function(evt) {
     evt.detail.isError = false;
   }
 });
+
+document.body.addEventListener('htmx:afterSwap', function(evt) {
+  if (validStatusCodes.includes(evt.detail.xhr.status) && evt.target.hasAttribute("data-note")) {
+    let modalEL = htmx.find("#note-modal");
+    const modalFlowbite = new Modal(modalEL);
+    modalFlowbite.hide();
+    initModals();
+  }
+});
+

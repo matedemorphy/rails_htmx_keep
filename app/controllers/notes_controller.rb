@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   respond_to :html
   before_action :set_note, only: %i[show edit update destroy]
+  before_action :set_target, only: %i[edit new]
 
   # GET /notes
   def index
@@ -14,11 +15,12 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
-    render partial: 'notes/form', locals: { note: @note }
+    render partial: 'notes/form', locals: { note: @note, target: @target }
   end
 
   # GET /notes/1/edit
   def edit
+    render partial: 'notes/form', locals: { note: @note, target: @target }
   end
 
   # POST /notes
@@ -35,9 +37,9 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
-      redirect_to @note, notice: "Note was successfully updated.", status: :see_other
+      render partial: 'notes/note', locals: { note: @note }, status: :ok
     else
-      render :edit, status: :unprocessable_entity
+      render partial: 'shared/form_errors', locals: { errors: @note.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -52,6 +54,10 @@ class NotesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_note
     @note = Note.find(params[:id])
+  end
+
+  def set_target
+    @target = @note ? "#note_#{@note.id}" : "#empty-note"
   end
 
   # Only allow a list of trusted parameters through.
