@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   respond_to :html
-  before_action :set_note, only: %i[show edit update destroy]
+  before_action :set_note, only: %i[show edit update destroy color]
   before_action :set_target, only: %i[edit new]
 
   # GET /notes
@@ -40,6 +40,12 @@ class NotesController < ApplicationController
       render partial: 'notes/note', locals: { note: @note }, status: :ok
     else
       render partial: 'shared/form_errors', locals: { errors: @note.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def color
+    if @note.update(color: params[:color])
+      render partial: 'notes/note', locals: { note: @note }, status: :ok
     end
   end
 

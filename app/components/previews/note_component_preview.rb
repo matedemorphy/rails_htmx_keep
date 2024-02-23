@@ -2,6 +2,8 @@
 
 class NoteComponentPreview < ViewComponent::Preview
   # Card with all attributes
+
+  #-@param color select { choices: [#FFFFFF, #FFFF00, #0000FF, #FF0000, #097969, #A020F0] }
   def with_all_attributes
     image_keys = [
       "ccl8qwjs4hcsulkfzbxr",
@@ -22,7 +24,7 @@ class NoteComponentPreview < ViewComponent::Preview
     title = Faker::Lorem.sentence(word_count: rand(1..3))
     rich_content = Faker::Lorem.paragraph(sentence_count: rand(1..12))
     image_key = image_keys.sample
-    component = NoteComponent.new(id: id, rich_content: rich_content, title: title, image_key: image_key)
+    component = NoteComponent.new(id: id, rich_content: rich_content, title: title, image_key: image_key, color: "#FFFFFF")
     render(component)
   end
 end
