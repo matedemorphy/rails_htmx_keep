@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  #post 'login_as_guest', to: 'users#login_as_guest', as: :login_as_guest
+
   devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks", sessions: "users/sessions"}
+  devise_scope :user do
+    post '/users/login_as_guest', to: 'users/sessions#login_as_guest', as: :login_as_guest
+  end
+  
   resources :notes do
     member do
       patch 'color'
