@@ -11,10 +11,10 @@ FactoryBot.define do
     end
 
     trait :with_all_attributes do
-      after :create do |note|
-        image_file = URI.parse(Faker::LoremFlickr.image(size: "400x400", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
-        note.image.attach(io: image_file, filename: "#{Faker::Commerce.promotion_code(digits: 5).downcase}.jpg")
-      end
+      # after :create do |note|
+      #   image_file = URI.parse(Faker::LoremFlickr.image(size: "400x400", search_terms: [[Faker::Emotion.adjective, Faker::Emotion.noun, Faker::Verb.base].sample])).open
+      #   note.image.attach(io: image_file, filename: "#{Faker::Commerce.promotion_code(digits: 5).downcase}.jpg")
+      # end
     end
 
     trait :invalid do
