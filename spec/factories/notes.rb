@@ -42,6 +42,7 @@ end
 # Table name: notes
 #
 #  id         :bigint           not null, primary key
+#  color      :string           default("#ffffff")
 #  title      :string           default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
