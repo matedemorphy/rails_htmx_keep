@@ -79,3 +79,4 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
 gem "rails-htmx", "~> 0.1.3"
+gem "pg_search"
