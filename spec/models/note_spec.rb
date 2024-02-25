@@ -5,6 +5,7 @@ RSpec.describe Note, type: :model do
     it { should have_rich_text(:content) }
     it { should validate_presence_of(:content) }
     it { should have_one_attached(:image) }
+    it { should have_one(:action_text_rich_text) }
     it { should belong_to(:user) }
   end
 

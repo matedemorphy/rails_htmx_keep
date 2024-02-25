@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     member do
       patch "color"
     end
+    collection do
+      post "search"
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

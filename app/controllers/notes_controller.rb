@@ -1,12 +1,12 @@
 class NotesController < ApplicationController
   respond_to :html
+  before_action :current_user_notes, only: %i[index search]
   before_action :set_note, only: %i[show edit update destroy color]
   before_action :set_target, only: %i[edit new]
   before_action :set_swap, only: %i[edit new]
 
   # GET /notes
   def index
-    @notes = Note.current_user(current_user.id).with_rich_text_content.with_attached_image
   end
 
   # GET /notes/1
@@ -50,6 +50,11 @@ class NotesController < ApplicationController
     end
   end
 
+  def search
+    @notes = params[:search].blank? ? @notes : @notes.search_full_text(params[:search]&.strip)
+    render partial: "notes/notes_grid", status: :ok
+  end
+
   # DELETE /notes/1
   def destroy
     @note.destroy!
@@ -69,6 +74,10 @@ class NotesController < ApplicationController
 
   def set_swap
     @swap = @note ? "outerHTML" : "beforeend"
+  end
+
+  def current_user_notes
+    @notes = Note.current_user(current_user.id).with_rich_text_content.with_attached_image
   end
 
   # Only allow a list of trusted parameters through.
