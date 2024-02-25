@@ -2,6 +2,7 @@ class NotesController < ApplicationController
   respond_to :html
   before_action :set_note, only: %i[show edit update destroy color]
   before_action :set_target, only: %i[edit new]
+  before_action :set_swap, only: %i[edit new]
 
   # GET /notes
   def index
@@ -15,12 +16,12 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
-    render partial: "notes/form", locals: {note: @note, target: @target}
+    render partial: "notes/form", locals: {note: @note, target: @target, swap: @swap}
   end
 
   # GET /notes/1/edit
   def edit
-    render partial: "notes/form", locals: {note: @note, target: @target}
+    render partial: "notes/form", locals: {note: @note, target: @target, swap: @swap}
   end
 
   # POST /notes
@@ -63,7 +64,11 @@ class NotesController < ApplicationController
   end
 
   def set_target
-    @target = @note ? "#note_#{@note.id}" : "#empty-note"
+    @target = @note ? "#note_#{@note.id}" : "#notes-grid"
+  end
+
+  def set_swap
+    @swap = @note ? "outerHTML" : "beforeend"
   end
 
   # Only allow a list of trusted parameters through.

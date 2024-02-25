@@ -1,6 +1,6 @@
 <div class="p-4 md:p-5">
   <div id="form-errors"></div>
-  <%= form_with model: note, url: false, class: "space-y-4", data: hx(post: url_for(note), target: target, target_error: "#form-errors", swap: "outerHTML")  do |form| %>
+  <%= form_with model: note, url: false, class: "space-y-4", data: hx(post: url_for(note), target: target, target_error: "#form-errors", swap: swap)  do |form| %>
     <div>
       <%= form.label :title, class: "block mb-2 text-sm font-medium text-gray-900" %>
       <%= form.text_field :title, class: "bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-500 dark:placeholder-gray-400 dark:text-gray-700" %>

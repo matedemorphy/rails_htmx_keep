@@ -5,9 +5,8 @@
       New Note
     </button>
   </div>
-  <div id="notes-grid" class="masonry sm:masonry-sm md:masonry-md mt-10">
+  <div id="notes-grid" data-note="true" class="masonry sm:masonry-sm md:masonry-md mt-10">
     <%= render @notes %>
-    <div id="empty-note"></div>
   </div>
 </div>
 <%= render "note_modal" %>
