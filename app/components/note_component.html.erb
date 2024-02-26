@@ -1,4 +1,4 @@
-<div id="note_<%=@id%>" class="p-2" data-note="true">
+<div id="note_<%=@id%>" class="p-2 fade-note-out" data-note="true">
   <div style="background-color: <%= @color%> !important;" class="max-w-sm w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto shadow-md border border-gray-200 rounded-lg overflow-hidden">
     <div class="relative p-4">
       <% if @image_key.present? %>
@@ -18,7 +18,7 @@
           </button>
           <input hx-target="#note_<%=@id%>" hx-swap="outerHTML" hx-trigger="change" hx-vals='js:{"color": event.target.value}' hx-patch=<%= color_note_path(@id) %> id="color-picker-<%=@id%>" type="color" style="opacity: 0; width: 0;height:0;position: absolute;">
         </div>
-        <%= button_tag(class:"bg-white p-2 rounded border-white", type: "button", data: hx(confirm: "Are you sure you wish to delete this note?", delete: note_path(@id), swap: "delete", target: "#note_#{@id}")) do %>
+        <%= button_tag(class:"bg-white p-2 rounded border-white", type: "button", data: hx(confirm: "Are you sure you wish to delete this note?", delete: note_path(@id), swap: "delete swap:50ms", target: "#note_#{@id}")) do %>
           <%= content_tag(:i, "", class: "cursor-pointer text-red-500 text-2xl fa-regular fa-trash-can") %>
         <% end %>
       </div>

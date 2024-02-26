@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+.fade-note-out.htmx-swapping {
+  opacity: 0;
+  transition: opacity 50ms ease-out;
+}
