@@ -45,7 +45,7 @@ class NotesController < ApplicationController
   end
 
   def color
-    if @note.update(color: params[:color])
+    if @note.update(color: params[:color].html_safe)
       render partial: "notes/note", locals: {note: @note}, status: :ok
     end
   end
